@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Form Input Data</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background:#f5f5f5;
+  padding:20px;
+}
+
+form {
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  max-width:500px;
+  margin:auto;
+  box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+label {
+  display:block;
+  margin-top:15px;
+  font-weight:bold;
+}
+
+input, select {
+  width:100%;
+  padding:8px;
+  margin-top:5px;
+  border:1px solid #ccc;
+  border-radius:5px;
+}
+
+.code-group {
+  display: grid;
+  grid-template-columns: 60px 15px 1fr 15px 1fr 15px 1fr 15px 1fr;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+}
+
+.code-group input {
+  width: 100%;
+  text-align: center;
+}
+
+.code-group input:first-child {
+  background: #eee;
+  font-weight: bold;
+}
+
+.code-group span {
+  text-align: center;
+  font-weight: bold;
+}
+
+button {
+  margin-top:20px;
+  width:100%;
+  padding:10px;
+  background:#007BFF;
+  color:white;
+  border:none;
+  border-radius:5px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.time-group{
+  display:flex;
+  gap:10px;
+}
+
+.time-group div{
+  flex:1;
+}
+
+.kalibrasi-table{
+  display:grid;
+  grid-template-columns:40px 1fr 1fr 1fr;
+  gap:8px;
+  margin-top:10px;
+  align-items:center;
+}
+
+.kalibrasi-no{
+  text-align:center;
+  font-weight:bold;
+}
+
+.kalibrasi-title{
+  font-weight:bold;
+  text-align:center;
+  background:#f2f2f2;
+  padding:6px;
+  border-radius:4px;
+}
+
+.kalibrasi-table input{
+  text-align:center;
+}
+
+.checkbox-group{
+  margin-top:8px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.checkbox-group label{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:10px;
+  font-weight:normal;
+  margin-top:0;
+}
+
+.checkbox-group input{
+  width:auto;
+}
+
+.kalibrasi-table2{
+display:grid;
+grid-template-columns:40px repeat(7,1fr);
+gap:6px;
+margin-top:10px;
+align-items:center;
+}
+
+.kalibrasi-table2 input{
+text-align:center;
+}
+
+button:hover {
+  background:#0056b3;
+}
+</style>
+</head>
+
+<body>
+
+<form id="dataForm">
+  <h2>Form Input</h2>
+
+  <label>Nama:</label>
+  <select name="NAMA" required>
+    <option value="">-- Pilih Nama --</option>
+    <option value="Gibran">Gibran</option>
+    <option value="Murdani">Murdani</option>
+    <option value="Ali Janudin">Ali Janudin</option>
+    <option value="Fadil">Fadil</option>
+    <option value="Bayu Samudra">Bayu Samudra</option>
+  </select>
+
+  <label>Instrument Code:</label>
+
+<div class="code-group">
+  <input type="text" value="TJN" readonly>
+  <span>-</span>
+  <input type="text" id="X1" placeholder="-" required>
+  <span>-</span>
+  <input type="text" id="X2" placeholder="-" required>
+  <span>-</span>
+  <input type="text" id="X3" placeholder="-" required>
+  <span>-</span>
+  <input type="text" id="X4" placeholder="-">
+</div>
+
+  <!-- Hidden field untuk dikirim -->
+  <input type="hidden" name="InstrumentCode" id="InstrumentCode">
+  
+<label>Identitas Standard:</label>
+
+<div class="checkbox-group">
+
+<label>
+<input type="checkbox" class="stdCheck" value="CL-PI-01"> CL-PI-01
+</label>
+
+<label>
+<input type="checkbox" class="stdCheck" value="CL-PI-08"> CL-PI-08
+</label>
+
+<label>
+<input type="checkbox" class="stdCheck" value="CL-PI-05"> CL-PI-05
+</label>
+
+<label>
+<input type="checkbox" class="stdCheck" value="CL-PI-10"> CL-PI-10
+</label>
+
+<label>
+<input type="checkbox" class="stdCheck" value="CL-PI-11"> CL-PI-11
+</label>
+
+</div>
+
+<input type="hidden" name="IdentitasStandard" id="IdentitasStandard">
+  
+<label>Tanggal:</label>
+<input type="date" name="Tanggal" id="Tanggal" required>
+
+<label>Waktu Kalibrasi:</label>
+
+<div class="time-group">
+
+  <div>
+    <label>Jam Start</label>
+    <select name="JamStart" required>
+      <option value="">-- Start --</option>
+      <option value="06:00">06:00</option>
+      <option value="07:00">07:00</option>
+	  <option value="08:00">08:00</option>
+	  <option value="09:00">09:00</option>
+	  <option value="10:00">10:00</option>
+	  <option value="11:00">11:00</option>
+	  <option value="12:00">12:00</option>
+	  <option value="13:00">13:00</option>
+	  <option value="14:00">14:00</option>
+	  <option value="15:00">15:00</option>
+	  <option value="16:00">16:00</option>
+	  <option value="17:00">17:00</option>
+	  <option value="18:00">18:00</option>
+	  <option value="19:00">19:00</option>
+	 
+    </select>
+  </div>
+
+  <div>
+    <label>Jam Finish</label>
+    <select name="JamFinish" required>
+      <option value="">-- Finish --</option>
+      <option value="06:00">06:00</option>
+      <option value="07:00">07:00</option>
+	  <option value="08:00">08:00</option>
+	  <option value="09:00">09:00</option>
+	  <option value="10:00">10:00</option>
+	  <option value="11:00">11:00</option>
+	  <option value="12:00">12:00</option>
+	  <option value="13:00">13:00</option>
+	  <option value="14:00">14:00</option>
+	  <option value="15:00">15:00</option>
+	  <option value="16:00">16:00</option>
+	  <option value="17:00">17:00</option>
+	  <option value="18:00">18:00</option>
+	  <option value="19:00">19:00</option>
+    </select>
+  </div>
+
+</div>
+
+ <label>Tempat:</label>
+  <select name="Tempat" required>
+    <option value="">-- Tempat --</option>
+    <option value="Calibrasi Room PP2">Calibrasi Room PP2</option>
+  </select> 
+
+<label>Suhu ruang (°C):</label>
+<input type="number" step="0.01"name="SuhuRuang" required>
+
+<label>Kelembaban (%RH):</label>
+<input type="number" step="0.01" name="Kelembaban" required>
+
+<label>Awal Kalibrasi</label>
+
+<div class="kalibrasi-table2">
+
+<div class="kalibrasi-title">No</div>
+<div class="kalibrasi-title">Set Point</div>
+<div class="kalibrasi-title">P1 Naik</div>
+<div class="kalibrasi-title">P1 Turun</div>
+<div class="kalibrasi-title">P2 Naik</div>
+<div class="kalibrasi-title">P2 Turun</div>
+<div class="kalibrasi-title">P3 Naik</div>
+<div class="kalibrasi-title">P3 Turun</div>
+
+<div>1</div>
+<input type="number" step="0.01" name="Set_Point_1" required>
+<input type="number" step="0.01" name="S1P1_Naik" required>
+<input type="number" step="0.01" name="S1P1_Turun" required>
+<input type="number" step="0.01" name="S1P2_Naik" required>
+<input type="number" step="0.01" name="S1P2_Turun" required>
+<input type="number" step="0.01" name="S1P3_Naik" required>
+<input type="number" step="0.01" name="S1P3_Turun" required>
+
+<div>2</div>
+<input type="number" step="0.01" name="Set_Point_2" required>
+<input type="number" step="0.01" name="S2P1_Naik" required>
+<input type="number" step="0.01" name="S2P1_Turun" required>
+<input type="number" step="0.01" name="S2P2_Naik" required>
+<input type="number" step="0.01" name="S2P2_Turun" required>
+<input type="number" step="0.01" name="S2P3_Naik" required>
+<input type="number" step="0.01" name="S2P3_Turun" required>
+
+<div>3</div>
+<input type="number" step="0.01" name="Set_Point_3" required>
+<input type="number" step="0.01" name="S3P1_Naik" required>
+<input type="number" step="0.01" name="S3P1_Turun" required>
+<input type="number" step="0.01" name="S3P2_Naik" required>
+<input type="number" step="0.01" name="S3P2_Turun" required>
+<input type="number" step="0.01" name="S3P3_Naik" required>
+<input type="number" step="0.01" name="S3P3_Turun" required>
+
+<div>4</div>
+<input type="number" step="0.01" name="Set_Point_4" required>
+<input type="number" step="0.01" name="S4P1_Naik" required>
+<input type="number" step="0.01" name="S4P1_Turun" required>
+<input type="number" step="0.01" name="S4P2_Naik" required>
+<input type="number" step="0.01" name="S4P2_Turun" required>
+<input type="number" step="0.01" name="S4P3_Naik" required>
+<input type="number" step="0.01" name="S4P3_Turun" required>
+
+<div>5</div>
+<input type="number" step="0.01" name="Set_Point_5" required>
+<input type="number" step="0.01" name="S5P1_Naik" required>
+<input type="number" step="0.01" name="S5P1_Turun" required>
+<input type="number" step="0.01" name="S5P2_Naik" required>
+<input type="number" step="0.01" name="S5P2_Turun" required>
+<input type="number" step="0.01" name="S5P3_Naik" required>
+<input type="number" step="0.01" name="S5P3_Turun" required>
+
+<div>6</div>
+<input type="number" step="0.01" name="Set_Point_6" required>
+<input type="number" step="0.01" name="S6P1_Naik" required>
+<input type="number" step="0.01" name="S6P1_Turun" required>
+<input type="number" step="0.01" name="S6P2_Naik" required>
+<input type="number" step="0.01" name="S6P2_Turun" required>
+<input type="number" step="0.01" name="S6P3_Naik" required>
+<input type="number" step="0.01" name="S6P3_Turun" required>
+
+</div>
+
+
+  <button type="submit" id="submitBtn">Kirim</button>
+</form>
+
+<script>
+
+const scriptURL = "https://script.google.com/macros/s/AKfycbzuxqGpAdq6N8IqJDsYQoX9pjUq5__24xFFX8x4Ht8hebYUbm8B2vruDX1DRlsueexlMA/exec";
+const form = document.getElementById("dataForm");
+const submitBtn = document.getElementById("submitBtn");
+
+// Auto uppercase saat mengetik
+["X1","X2","X3","X4"].forEach(id => {
+  document.getElementById(id).addEventListener("input", function() {
+    this.value = this.value.toUpperCase();
+  });
+});
+
+form.addEventListener("submit", function(e){
+  e.preventDefault();
+
+  // === Ambil & format Instrument Code ===
+  const x1 = document.getElementById("X1").value.trim().toUpperCase();
+  const x2 = document.getElementById("X2").value.trim().toUpperCase();
+  const x3 = document.getElementById("X3").value.trim().toUpperCase();
+
+  if (!x1 || !x2) {
+    alert("X1 dan X2 wajib diisi");
+    return;
+  }
+
+  let finalCode = `TJN-${x1}-${x2}`;
+
+  if (x3 !== "") {
+    finalCode += `-${x3}`;
+  }
+
+  document.getElementById("InstrumentCode").value = finalCode;
+  
+  // Gabungkan checkbox identitas standard
+const checks = document.querySelectorAll(".stdCheck:checked");
+
+let selected = [];
+
+checks.forEach(c=>{
+  selected.push(c.value);
+});
+
+if(selected.length === 0){
+  alert("Pilih minimal satu Identitas Standard");
+  return;
+}
+
+document.getElementById("IdentitasStandard").value = selected.join(", ");
+
+  const formData = new FormData(form);
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Mengirim...";
+
+  fetch(scriptURL, {
+    method: "POST",
+    mode: "no-cors",
+    body: formData
+  })
+  .then(() => {
+    alert("✅ Data berhasil dikirim\nKode: " + finalCode);
+    form.reset();
+  })
+  .catch(err => {
+    alert("❌ Error: " + err);
+  })
+  .finally(() => {
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Kirim";
+  });
+
+});
+
+</script>
+
+</body>
+</html>
