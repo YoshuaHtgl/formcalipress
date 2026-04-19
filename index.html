@@ -145,17 +145,16 @@ button:hover {
 <body>
 
 <form id="dataForm">
-  <h2>Form Input</h2>
+  <h2>Form Input Pressure</h2>
 
   <label>Nama:</label>
   <select name="NAMA" required>
     <option value="">-- Pilih Nama --</option>
     <option value="Gibran">Gibran</option>
+	<option value="Ahmad Ridwan">Ahmad Ridwan</option>
     <option value="Murdani">Murdani</option>
     <option value="Ali Janudin">Ali Janudin</option>
-    <option value="Fadil">Fadil</option>
-    <option value="Bayu Samudra">Bayu Samudra</option>
-	<option value="Ahmad Ridwan">Ahmad Ridwan</option>
+	
   </select>
 
   <label>Instrument Code:</label>
@@ -206,54 +205,18 @@ button:hover {
 <label>Tanggal:</label>
 <input type="date" name="Tanggal" id="Tanggal" required>
 
-<label>Waktu Kalibrasi:</label>
 
-<div class="time-group">
-
-  <div>
-    <label>Jam Start</label>
-    <select name="JamStart" required>
-      <option value="">-- Start --</option>
-      <option value="06:00">06:00</option>
-      <option value="07:00">07:00</option>
-	  <option value="08:00">08:00</option>
-	  <option value="09:00">09:00</option>
-	  <option value="10:00">10:00</option>
-	  <option value="11:00">11:00</option>
-	  <option value="12:00">12:00</option>
-	  <option value="13:00">13:00</option>
-	  <option value="14:00">14:00</option>
-	  <option value="15:00">15:00</option>
-	  <option value="16:00">16:00</option>
-	  <option value="17:00">17:00</option>
-	  <option value="18:00">18:00</option>
-	  <option value="19:00">19:00</option>
-	 
-    </select>
+ <label>Waktu Kalibrasi:</label>
+  <div class="time-group">
+    <div>
+      <label>Jam Start</label>
+      <input type="time" name="JamStart" required>
+    </div>
+    <div>
+      <label>Jam Finish</label>
+      <input type="time" name="JamFinish" required>
+    </div>
   </div>
-
-  <div>
-    <label>Jam Finish</label>
-    <select name="JamFinish" required>
-      <option value="">-- Finish --</option>
-      <option value="06:00">06:00</option>
-      <option value="07:00">07:00</option>
-	  <option value="08:00">08:00</option>
-	  <option value="09:00">09:00</option>
-	  <option value="10:00">10:00</option>
-	  <option value="11:00">11:00</option>
-	  <option value="12:00">12:00</option>
-	  <option value="13:00">13:00</option>
-	  <option value="14:00">14:00</option>
-	  <option value="15:00">15:00</option>
-	  <option value="16:00">16:00</option>
-	  <option value="17:00">17:00</option>
-	  <option value="18:00">18:00</option>
-	  <option value="19:00">19:00</option>
-    </select>
-  </div>
-
-</div>
 
  <label>Tempat:</label>
   <select name="Tempat" required>
@@ -336,13 +299,31 @@ button:hover {
 
 </div>
 
+<label>Kondisi Alat:</label>
+
+<div class="checkbox-group">
+  <label>
+    <input type="radio" name="KondisiAlat" value="Normal" required> Normal
+  </label>
+
+  <label>
+    <input type="radio" name="KondisiAlat" value="Ganti Baru"> Ganti Baru
+  </label>
+</div>
+
+<!-- Kotak input tambahan -->
+<div id="catatanBox" style="display:none;">
+  <label>Catatan (Wajib diisi jika ganti baru):</label>
+  <label>isi dengan data: Nama alat, manufacture,type,nomor serial,kapasiti dan satuanya,resolution dan satuanya:</label>
+  <textarea id="catatan" name="Catatan" placeholder="..." style="width:100%; padding:8px; border-radius:5px;"></textarea>
+</div>
 
   <button type="submit" id="submitBtn">Kirim</button>
 </form>
 
 <script>
 
-const scriptURL = "https://script.google.com/macros/s/AKfycbxgiVFc62YCD9kINmOo6FbhQrn2jw05Vginuz9uCZYZUpCcsmnmpfH2XJ6e5J2dGpyMyQ/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbz_xOgcx7JgWdar7DUEsbtMRxijOR7CideMTCObRXo7rqRVcEFkY5thD67YdvYxT4pzLA/exec";
 const form = document.getElementById("dataForm");
 const submitBtn = document.getElementById("submitBtn");
 
@@ -350,6 +331,23 @@ const submitBtn = document.getElementById("submitBtn");
 ["X1","X2","X3","X4"].forEach(id => {
   document.getElementById(id).addEventListener("input", function() {
     this.value = this.value.toUpperCase();
+  });
+});
+
+const kondisiRadios = document.querySelectorAll("input[name='KondisiAlat']");
+const catatanBox = document.getElementById("catatanBox");
+const catatanInput = document.getElementById("catatan");
+
+kondisiRadios.forEach(radio => {
+  radio.addEventListener("change", function () {
+    if (this.value === "Ganti Baru") {
+      catatanBox.style.display = "block";
+      catatanInput.required = true;
+    } else {
+      catatanBox.style.display = "none";
+      catatanInput.required = false;
+      catatanInput.value = "";
+    }
   });
 });
 
